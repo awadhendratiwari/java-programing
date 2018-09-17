@@ -3,8 +3,9 @@ package ds.queue;
 public class QueueArray<T> implements IQueue<T> {
     private final T[] queueArray;
     private final int sizeOfArray;
-    private int enqueueIndex = -1;
-    private int dequeueIndex = -1;
+    private int rear = -1;
+    private int front = -1;
+    private int numberOfElements = 0;
 
     public QueueArray(int sizeOfQueue){
         this.sizeOfArray = sizeOfQueue;
@@ -12,14 +13,35 @@ public class QueueArray<T> implements IQueue<T> {
     }
 
     public void enqueue(T element) throws QueueException {
-
+        if(!this.isQueueEmpty())
+            throw new QueueException(QueueException.QueueExceptionType.QUEUE_OVERFLOW);
+        this.front++;
+        if((this.front + 1) < this.sizeOfArray){
+            this.front++;
+        }else{
+            this.front = 0;
+        }
+        this.queueArray[this.front] = element;
+        this.numberOfElements++;
     }
 
     public T dequeue() throws QueueException {
-        return null;
+        if(this.front == this.rear)
+            throw new QueueException(QueueException.QueueExceptionType.QUEUE_UNDERFLOW);
+        if(this.rear + 1 < this.sizeOfArray){
+            this.rear++;
+        }else{
+            this.rear = 0;
+        }
+        this.numberOfElements--;
+        return this.queueArray[this.rear];
     }
 
     public int numberOfElements() {
-        return 0;
+        return this.numberOfElements;
+    }
+
+    private boolean isQueueEmpty(){
+        return (this.front + 1 - this.rear + 1) < this.sizeOfArray;
     }
 }
