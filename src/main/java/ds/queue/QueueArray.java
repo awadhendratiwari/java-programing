@@ -13,7 +13,7 @@ public class QueueArray<T> implements IQueue<T> {
     }
 
     public void enqueue(T element) throws QueueException {
-        if(!this.isQueueEmpty())
+        if(!this.isQueueFull())
             throw new QueueException(QueueException.QueueExceptionType.QUEUE_OVERFLOW);
         if((this.front + 1) < this.sizeOfArray){
             this.front++;
@@ -25,7 +25,7 @@ public class QueueArray<T> implements IQueue<T> {
     }
 
     public T dequeue() throws QueueException {
-        if(this.front == this.rear)
+        if(this.numberOfElements() == 0)
             throw new QueueException(QueueException.QueueExceptionType.QUEUE_UNDERFLOW);
         if(this.rear + 1 < this.sizeOfArray){
             this.rear++;
@@ -40,7 +40,7 @@ public class QueueArray<T> implements IQueue<T> {
         return this.numberOfElements;
     }
 
-    private boolean isQueueEmpty(){
+    private boolean isQueueFull(){
         return (this.front + 1) - (this.rear + 1) < this.sizeOfArray;
     }
 }
