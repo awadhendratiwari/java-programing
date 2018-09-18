@@ -6,7 +6,8 @@ public class QueueList<T> implements IQueue<T> {
 
     private final class Node<T>{
         private T element;
-        private Node address;
+        private Node next;
+        private Node previous;
     }
 
     public void enqueue(T element) throws QueueException {
@@ -15,7 +16,8 @@ public class QueueList<T> implements IQueue<T> {
             this.front = node;
             this.rear = node;
         }else{
-            node.address = this.front;
+            this.front.next = node;
+            node.previous = this.front;
             this.front = node;
         }
         this.numberOfElements++;
@@ -27,7 +29,15 @@ public class QueueList<T> implements IQueue<T> {
         }
 
         T element = this.rear.element;
-        this.rear = this.rear.address;
+        if(this.rear == this.front)
+        {
+            this.rear = null;
+            this.front = null;
+        }else{
+            this.rear = this.rear.next;
+            this.rear.previous = null;
+        }
+        this.numberOfElements--;
         return element;
     }
 

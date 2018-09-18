@@ -15,7 +15,6 @@ public class QueueArray<T> implements IQueue<T> {
     public void enqueue(T element) throws QueueException {
         if(!this.isQueueEmpty())
             throw new QueueException(QueueException.QueueExceptionType.QUEUE_OVERFLOW);
-        this.front++;
         if((this.front + 1) < this.sizeOfArray){
             this.front++;
         }else{
@@ -42,6 +41,6 @@ public class QueueArray<T> implements IQueue<T> {
     }
 
     private boolean isQueueEmpty(){
-        return (this.front + 1 - this.rear + 1) < this.sizeOfArray;
+        return (this.front + 1) - (this.rear + 1) < this.sizeOfArray;
     }
 }
