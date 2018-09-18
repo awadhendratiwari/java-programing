@@ -1,5 +1,6 @@
 package ds.queue;
 
+import ds.common.DSException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,8 +10,8 @@ public class QueueArrayTest {
         IQueue<String> queue = new QueueArray<String>(5);
         try{
             queue.dequeue();
-        }catch (QueueException ex){
-            Assert.assertEquals(QueueException.QUEUE_UNDERFLOW_STR , ex.getMessage());
+        }catch (DSException ex){
+            Assert.assertEquals(DSException.QUEUE_UNDERFLOW_STR , ex.getMessage());
         }
     }
 
@@ -21,8 +22,8 @@ public class QueueArrayTest {
             queue.enqueue("first");
             queue.enqueue("second");
             queue.enqueue("third");
-        }catch (QueueException qe){
-            Assert.assertEquals(QueueException.QUEUE_OVERFLOW_STR , qe.getMessage());
+        }catch (DSException qe){
+            Assert.assertEquals(DSException.QUEUE_OVERFLOW_STR , qe.getMessage());
         }
     }
 
@@ -40,7 +41,7 @@ public class QueueArrayTest {
             Assert.assertEquals(1 , queue.numberOfElements());
             queue.enqueue("first");
             Assert.assertEquals(2 , queue.numberOfElements());
-        }catch (QueueException qe){
+        }catch (DSException qe){
             Assert.fail(qe.getMessage());
         }
     }
@@ -59,7 +60,7 @@ public class QueueArrayTest {
             queue.enqueue("second");
             Assert.assertEquals("first" , queue.dequeue());
             Assert.assertEquals("second" , queue.dequeue());
-        }catch (QueueException qe){
+        }catch (DSException qe){
             Assert.fail(qe.getMessage());
         }
     }

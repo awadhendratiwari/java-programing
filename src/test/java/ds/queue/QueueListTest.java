@@ -1,5 +1,6 @@
 package ds.queue;
 
+import ds.common.DSException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,8 +10,8 @@ public class QueueListTest {
         IQueue<String> queue = new QueueList<String>();
         try {
             queue.dequeue();
-        }catch (QueueException qe){
-            Assert.assertEquals(QueueException.QUEUE_UNDERFLOW_STR , qe.getMessage());
+        }catch (DSException qe){
+            Assert.assertEquals(DSException.QUEUE_UNDERFLOW_STR , qe.getMessage());
         }
     }
 
@@ -24,7 +25,7 @@ public class QueueListTest {
             Assert.assertEquals(2 , queue.numberOfElements());
             queue.dequeue();
             Assert.assertEquals(1 , queue.numberOfElements());
-        }catch (QueueException qe){
+        }catch (DSException qe){
             Assert.fail(qe.getMessage());
         }
     }
@@ -37,7 +38,7 @@ public class QueueListTest {
             queue.enqueue("second");
             Assert.assertEquals("first" , queue.dequeue());
             Assert.assertEquals("second" , queue.dequeue());
-        }catch (QueueException qe){
+        }catch (DSException qe){
             Assert.fail(qe.getMessage());
         }
     }

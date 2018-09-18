@@ -1,5 +1,7 @@
 package ds.queue;
 
+import ds.common.DSException;
+
 public class QueueArray<T> implements IQueue<T> {
     private final T[] queueArray;
     private final int sizeOfArray;
@@ -12,9 +14,9 @@ public class QueueArray<T> implements IQueue<T> {
         this.queueArray = (T[])new Object[sizeOfQueue];
     }
 
-    public void enqueue(T element) throws QueueException {
+    public void enqueue(T element) throws DSException {
         if(!this.isQueueFull())
-            throw new QueueException(QueueException.QueueExceptionType.QUEUE_OVERFLOW);
+            throw new DSException(DSException.DSType.QUEUE_OVERFLOW);
         if((this.front + 1) < this.sizeOfArray){
             this.front++;
         }else{
@@ -24,9 +26,9 @@ public class QueueArray<T> implements IQueue<T> {
         this.numberOfElements++;
     }
 
-    public T dequeue() throws QueueException {
+    public T dequeue() throws DSException {
         if(this.numberOfElements() == 0)
-            throw new QueueException(QueueException.QueueExceptionType.QUEUE_UNDERFLOW);
+            throw new DSException(DSException.DSType.QUEUE_UNDERFLOW);
         if(this.rear + 1 < this.sizeOfArray){
             this.rear++;
         }else{
