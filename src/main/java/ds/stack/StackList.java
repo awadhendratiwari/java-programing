@@ -1,5 +1,7 @@
 package ds.stack;
 
+import ds.common.DSException;
+
 public class StackList<T> implements IStack<T> {
     private static class Node<T>{
         private T element;
@@ -13,7 +15,7 @@ public class StackList<T> implements IStack<T> {
         return (this.size + 1);
     }
 
-    public void push(T element) throws StackException {
+    public void push(T element) throws DSException {
         Node<T> node = this.createNode(element);
         if(this.top == null){
             this.top = node;
@@ -24,9 +26,9 @@ public class StackList<T> implements IStack<T> {
         this.size++;
     }
 
-    public T pop() throws StackException {
+    public T pop() throws DSException {
         if(this.top == null){
-            throw new StackException(StackException.StackExceptionType.STACK_UNDERFLOW);
+            throw new DSException(DSException.DSType.STACK_UNDERFLOW);
         }
 
         T element = this.top.element;

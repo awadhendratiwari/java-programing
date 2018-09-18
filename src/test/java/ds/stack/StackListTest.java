@@ -1,5 +1,6 @@
 package ds.stack;
 
+import ds.common.DSException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,8 +10,8 @@ public class StackListTest {
         StackList<String> stackList = new StackList<String>();
         try{
             stackList.pop();
-        }catch (StackException ex){
-            Assert.assertEquals(StackException.STACK_UNDERFLOW_STR , ex.getMessage());
+        }catch (DSException ex){
+            Assert.assertEquals(DSException.STACK_UNDERFLOW_STR , ex.getMessage());
         }
     }
 
@@ -29,7 +30,7 @@ public class StackListTest {
             Assert.assertEquals(2 , stackList.numberOfElementsInStack());
             Assert.assertEquals("second" , stackList.pop());
             Assert.assertEquals(1 , stackList.numberOfElementsInStack());
-        }catch (StackException exception){
+        }catch (DSException exception){
             System.out.println(exception.getMessage());
         }
     }

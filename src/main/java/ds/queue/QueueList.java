@@ -1,5 +1,7 @@
 package ds.queue;
 
+import ds.common.DSException;
+
 public class QueueList<T> implements IQueue<T> {
     private int numberOfElements;
     private Node<T> front , rear;
@@ -10,7 +12,7 @@ public class QueueList<T> implements IQueue<T> {
         private Node previous;
     }
 
-    public void enqueue(T element) throws QueueException {
+    public void enqueue(T element) throws DSException {
         Node<T> node = this.getNodeInstance(element);
         if(this.front == null){
             this.front = node;
@@ -23,9 +25,9 @@ public class QueueList<T> implements IQueue<T> {
         this.numberOfElements++;
     }
 
-    public T dequeue() throws QueueException {
+    public T dequeue() throws DSException {
         if(this.rear == null){
-            throw new QueueException(QueueException.QueueExceptionType.QUEUE_UNDERFLOW);
+            throw new DSException(DSException.DSType.QUEUE_UNDERFLOW);
         }
 
         T element = this.rear.element;

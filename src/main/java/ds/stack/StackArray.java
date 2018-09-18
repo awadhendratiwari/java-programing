@@ -1,5 +1,7 @@
 package ds.stack;
 
+import ds.common.DSException;
+
 public class StackArray<T> implements IStack<T> {
     private final T[] stackArray;
     private final int sizeOfStack;
@@ -14,18 +16,18 @@ public class StackArray<T> implements IStack<T> {
         return (this.top + 1);
     }
 
-    public void push(T element) throws StackException{
+    public void push(T element) throws DSException{
         if((this.top + 1) < this.sizeOfStack){
             this.top++;
             this.stackArray[this.top] = element;
         }else{
-            throw new StackException(StackException.StackExceptionType.STACK_OVERFLOW);
+            throw new DSException(DSException.DSType.STACK_OVERFLOW);
         }
     }
 
-    public T pop() throws StackException {
+    public T pop() throws DSException {
         if(this.top == -1){
-            throw new StackException(StackException.StackExceptionType.STACK_UNDERFLOW);
+            throw new DSException(DSException.DSType.STACK_UNDERFLOW);
         }
         this.top --;
         return this.stackArray[this.top + 1];

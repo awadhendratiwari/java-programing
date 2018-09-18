@@ -1,5 +1,6 @@
 package ds.stack;
 
+import ds.common.DSException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,8 +10,8 @@ public class StackArrayTest {
         IStack<String> stack = new StackArray<String>(0);
         try {
             stack.push("test element");
-        }catch (StackException ex){
-            Assert.assertEquals(StackException.STACK_OVERFLOW_STR , ex.getMessage());
+        }catch (DSException ex){
+            Assert.assertEquals(DSException.STACK_OVERFLOW_STR , ex.getMessage());
         }
     }
 
@@ -19,8 +20,8 @@ public class StackArrayTest {
         IStack<String> stack = new StackArray<String>(0);
         try{
             stack.pop();
-        }catch (StackException ex){
-            Assert.assertEquals(StackException.STACK_UNDERFLOW_STR , ex.getMessage());
+        }catch (DSException ex){
+            Assert.assertEquals(DSException.STACK_UNDERFLOW_STR , ex.getMessage());
         }
     }
 
@@ -36,7 +37,7 @@ public class StackArrayTest {
             Assert.assertEquals(1 , stack.numberOfElementsInStack());
             stack.pop();
             Assert.assertEquals(0 , stack.numberOfElementsInStack());
-        }catch (StackException ex){
+        }catch (DSException ex){
             System.out.println(ex.getMessage());
         }
     }
