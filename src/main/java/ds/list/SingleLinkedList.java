@@ -2,6 +2,10 @@ package ds.list;
 
 import ds.common.DSException;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class SingleLinkedList<T extends Comparable<T>>
         implements IList<T> {
     private Node<T> head , tail;
@@ -73,13 +77,13 @@ public class SingleLinkedList<T extends Comparable<T>>
         return node;
     }
 
-    public T[] getElements() {
+    public List<T> getElements() {
         this.current = this.head;
-        final T [] tempArray = (T[]) new Object[this.numberOfElements];
+        final List<T> tempArray = new ArrayList<T>();
         int index = -1;
         while (this.current != null){
             index++;
-            tempArray[index] = this.current.getElement();
+            tempArray.add(index , this.current.getElement());
             this.current = this.current.getNext();
         }
         this.disposeTempNode();

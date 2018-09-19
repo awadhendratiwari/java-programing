@@ -37,7 +37,7 @@ public final class SingleLinkedListTest {
     @Test
     public void getElementsInEmptyListTest(){
         IList<String> list = new SingleLinkedList<String>();
-        Assert.assertEquals(0 , list.getElements().length);
+        Assert.assertEquals(0 , list.getElements().size());
     }
 
     @Test
@@ -52,8 +52,8 @@ public final class SingleLinkedListTest {
         });
 
         Assert.assertEquals(5 , list.getNumberOfElements());
-        Assert.assertEquals("first" , list.getElements()[0]);
-        Assert.assertEquals("fifth" , list.getElements()[4]);
+        Assert.assertEquals("first" , list.getElements().get(0));
+        Assert.assertEquals("fifth" , list.getElements().get(4));
         Assert.assertEquals(true , list.findElement("third"));
     }
 }
