@@ -106,6 +106,7 @@ public final class SingleLinkedListTest {
     @Test
     public void findElementInSingleLinkedListTest(){
         IList<String> list = new SingleLinkedList<String>();
+        
         list.add("first");
         list.add("second");
 
