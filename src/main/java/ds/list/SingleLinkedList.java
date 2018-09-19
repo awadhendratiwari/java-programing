@@ -36,6 +36,7 @@ public class SingleLinkedList<T extends Comparable<T>>
                 node.setNext(this.current);
                 this.previous.setNext(node);
             }
+            this.numberOfElements++;
         }
         this.disposeTempNode();
         if(!result){
@@ -54,6 +55,7 @@ public class SingleLinkedList<T extends Comparable<T>>
                 node.setNext(this.current.getNext());
                 this.current.setNext(node);
             }
+            this.numberOfElements++;
         }
         this.disposeTempNode();
         if(!result){
