@@ -8,7 +8,7 @@ import java.util.List;
 /*
 * This class represents doubly circular linked list.
 * In doubly circular linked list next address of last node points to the first node
-* and previous address of first node points to the next node.
+* and previous address of first node points to the next node. 
 * */
 public class CircularLinkedList<T extends Comparable<T>>
         implements IList<T>{
